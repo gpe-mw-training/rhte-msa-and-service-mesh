@@ -1,0 +1,104 @@
+swagger: '2.0'
+info:
+  title: GPTE Coolstore Catalog API
+  description: Serves products and prices for retail products
+  version: 1.0.0
+schemes:
+  - http
+basePath: /
+produces:
+  - application/json
+paths:
+  /products:
+    get:
+      summary: Get a list of products
+      description: |
+        This endpoint returns a list of products
+      responses:
+        '200':
+          description: An array of products
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Product'
+              
+  /product/{itemId}:
+    get:
+      summary: Get product
+      description: |
+        This endpoint retrieves a product based on the given item id
+      parameters:
+        - name: itemId
+          in: path
+          required: true
+          description: The id of the item to retrieve
+          type: string
+      responses:
+        '200':
+          description: Successfully added a product
+          schema:
+              $ref: '#/definitions/Product'
+  
+  /product:
+    post:
+      summary: Add a new product
+      description: |
+        The endpoint adds a new product
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: product
+          description: The product to create.
+          schema:
+            $ref: '#/definitions/Product'
+      responses:
+        '201':
+          description: Created
+
+  /health/readiness:
+    get:
+      summary: Readiness probe for health check
+      description: |
+        Determines if a container is ready to service requests
+      responses:
+        '200':
+          description: Success
+          produces:
+          - text/plain
+          schema:
+            type: string
+            example: OK
+
+  /health/liveness:
+    get:
+      summary: Liveness probe for health check
+      description: |
+        Checks if the container in which it is configured is still running
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: object
+            example: 
+              checks:
+                - id: health
+                  status: UP
+              outcome: UP
+                     
+definitions:
+  Product:
+    type: object
+    properties:
+      itemId:
+        type: string
+        description: Unique identifier representing a specific product.
+      name:
+        type: string
+        description: Display name of product.
+      desc:
+        type: string
+        description: Description of product.
+      price:
+        type: number
+        description: Price of product.

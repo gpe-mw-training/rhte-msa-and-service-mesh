@@ -1,0 +1,32 @@
+spec:
+  template:
+    spec:
+      containers:
+        - name: vertx
+          livenessProbe:
+            failureThreshold: 2
+            httpGet:
+              path: "/health/liveness"
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: "/health/readiness"
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            successTreshold: 1
+            timeoutSeconds: 1
+          resources:
+            limits:
+              cpu: 500m
+              memory: 500Mi
+            requests:
+              cpu: 100m
+              memory: 200Mi
