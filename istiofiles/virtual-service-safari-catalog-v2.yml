@@ -14,9 +14,9 @@ spec:
     route:
     - destination:
         host: catalog
-        subset: v2
+        subset: version-v2
   - route:
     - destination:
         host: catalog
-        subset: v1
+        subset: version-v1
 ---
