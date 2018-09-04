@@ -3,7 +3,6 @@ kind: VirtualService
 metadata:
   creationTimestamp: null
   name: catalog
-  namespace: tutorial
 spec:
   hosts:
   - catalog
