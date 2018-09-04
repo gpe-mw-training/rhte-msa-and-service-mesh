@@ -1,5 +1,5 @@
 #!/bin/bash
-while true
-do curl customer-tutorial.$(minishift ip).nip.io
-sleep .5
+
+for i in $(seq 10); do
+  curl $GATEWAY_SERVICE_URL
 done
