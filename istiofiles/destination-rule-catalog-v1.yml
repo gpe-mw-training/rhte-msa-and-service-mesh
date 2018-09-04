@@ -1,0 +1,15 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  creationTimestamp: null
+  name: catalog
+  namespace: tutorial
+spec:
+  host: catalog
+  subsets:
+  - labels:
+      version: virtualized
+    name: version-virtualized
+  - labels:
+      version: v1
+    name: version-v1

@@ -1,7 +1,5 @@
 target/
 !.mvn/wrapper/maven-wrapper.jar
-audit.log
-
 
 ### STS ###
 .apt_generated
@@ -24,6 +22,3 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
-
-.DS_Store
-.vscode
