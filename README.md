@@ -1,4 +1,6 @@
-# Red Hat Tech Exchange 2018 - MSA and Service Mesh Multi-Product Lab
+# Red Hat Tech Exchange 2018 
+
+## MSA and Service Mesh Multi-Product Lab
 
 This repository contains the _MSA and Service Mesh_ lab exercises. 
 
