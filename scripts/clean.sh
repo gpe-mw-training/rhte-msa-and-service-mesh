@@ -6,7 +6,7 @@ if [ -z "$namespace" ]; then
     namespace="tutorial"
 fi
 
-contentvs=`istioctl get virtualservice -n "$namespace" 2>/dev/null` 
+contentvs=`oc get virtualservice -n "$namespace" --as=system:admin 2>/dev/null` 
 
 if [ -z "$contentvs" ]; then
     echo "No Virtual Services in $namespace namespace."
@@ -17,12 +17,12 @@ else
 
     for name in "${names[@]}"
     do
-        istioctl delete virtualservice "$name" -n "$namespace"
+        oc delete virtualservice "$name" -n "$namespace" --as=system:admin
     done
     
 fi
 
-contentdr=`istioctl get destinationrule -n "$namespace" 2>/dev/null`
+contentdr=`oc get destinationrule -n "$namespace" --as=system:admin 2>/dev/null`
 
 if [ -z "$contentdr" ]; then
     echo "No Destination Rule in $namespace namespace."
@@ -33,12 +33,12 @@ else
 
     for name in "${names[@]}"
     do
-        istioctl delete destinationrule "$name" -n "$namespace"
+        oc delete destinationrule "$name" -n "$namespace" --as=system:admin
     done
     
 fi
 
-contentse=`istioctl get serviceentry -n "$namespace" 2>/dev/null`
+contentse=`oc get serviceentry -n "$namespace" --as=system:admin 2>/dev/null`
 
 if [ -z "$contentse" ]; then
     echo "No Service Entry in $namespace namespace."
@@ -49,7 +49,7 @@ else
 
     for name in "${names[@]}"
     do
-        istioctl delete serviceentry "$name" -n "$namespace"
+        oc delete serviceentry "$name" -n "$namespace" --as=system:admin
     done
     
 fi
