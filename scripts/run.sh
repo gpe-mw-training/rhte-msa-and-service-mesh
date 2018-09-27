@@ -1,15 +1,9 @@
 #!/bin/bash
 
-# if no params passed in, just do a continuous/infinite loop
-# else if we have a param then it is number of requests
-
 numberOfRequests=$1
 
 if [ $# -eq 0 ]; then
-
-	while true; do 
-	  curl $GATEWAY_URL		
-	done
+	let "numberOfRequests=100"
 else
 	let "i = 0"
 	while [ $i -lt $numberOfRequests ]; do	
